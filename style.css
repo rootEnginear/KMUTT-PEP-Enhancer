@@ -1,0 +1,64 @@
+#subjects {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.subject {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1),
+    0 0 0 rgba(10,10,10,0),
+    0 0 0 1px rgba(10,10,10,.1);
+  color: #4a4a4a;
+  display: inline-block;
+  padding: 1.25rem;
+  margin: 1.25rem;
+
+  font-family: "Sarabun", sans-serif;
+  max-width: calc(20% - 2.5rem);
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+
+  transition: box-shadow 150ms cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.subject:hover {
+  box-shadow: 0 2px 3px rgba(10,10,10,.1),
+    0 4px 6px rgba(10,10,10,.1),
+    0 0 0 1px rgba(10,10,10,.1);
+  transition: box-shadow 100ms cubic-bezier(0.4, 0.0, 1, 1);
+}
+
+.subject > .sid {
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-bottom: .5rem;
+  letter-spacing: 2px;
+}
+
+.subject > .stype,
+.subject > .syear {
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+
+.subject > .stype {
+  text-transform: uppercase
+}
+
+.subject > .spacer {
+  background-color: #f5f5f5;
+  border: none;
+  display: block;
+  height: 2px;
+  margin: 1rem 0 .5rem;
+}
+
+.subject > .sname {
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
