@@ -7,3 +7,10 @@ KMUTT PEP (Past Exam Paper) Enhancer เป็น Chrome Extension ที่จ�
 - [ ] ปรับปรุง Control ในการค้นหาข้อมูล
 - [ ] สามารถตั้ง Filter และ Sorting ด้วยตนเองได้
 - [ ] สามารถกดดูข้อสอบในหน้าถัดไปได้โดยตรง
+
+## How to install:
+1. Clone this repository
+1. Go to `chrome://extensions/`
+1. Turn on `Developer Mode`
+1. Click on `Load unpacked`
+1. Browse into this repository
