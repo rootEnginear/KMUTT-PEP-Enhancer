@@ -4,11 +4,11 @@ let subjects_string = data_element.innerText;
 let subjects_link = [...document.querySelectorAll("table[border='1'] a")].map(
   link => link.href
 );
-// let pagination_string = document
-//   .querySelector("table[border='0'] > tbody > tr > td:nth-child(4)")
-//   .innerText.trim();
-// let pagination_string_matcher = /Records\s*\d+\s*to\s*\d+\s*of\s*(\d+)/g;
-// let total_page = +pagination_string_matcher.exec(pagination_string)[1];
+let pagination_string = document
+  .querySelector("table[border='0'] > tbody > tr > td:nth-child(4)")
+  .innerText.trim();
+let pagination_string_matcher = /Records\s*\d+\s*to\s*\d+\s*of\s*(\d+)/g;
+let total_page = +pagination_string_matcher.exec(pagination_string)[1];
 // console.log(total_page);
 
 if (total_page) {
