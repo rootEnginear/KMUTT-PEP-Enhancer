@@ -1,0 +1,28 @@
+{
+  "name": "kmutt-pep-enhancer",
+  "version": "0.1.0",
+  "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
+  "main": "",
+  "scripts": {
+    "build": "tsc script && uglifyjs script.js -o script.min.js -c -m toplevel --mangle-props",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rootEnginear/KMUTT-PEP-Enhancer.git"
+  },
+  "keywords": [
+    "KMUTT",
+    "Exam"
+  ],
+  "author": "Suthep Chanchuphol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rootEnginear/KMUTT-PEP-Enhancer/issues"
+  },
+  "homepage": "https://github.com/rootEnginear/KMUTT-PEP-Enhancer#readme",
+  "devDependencies": {
+    "typescript": "^3.7.4",
+    "uglify-js": "^3.7.5"
+  }
+}

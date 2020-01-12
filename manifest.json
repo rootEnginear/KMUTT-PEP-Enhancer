@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": ["https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*"],
-      "js": ["script.js"],
+      "js": ["script.min.js"],
       "css": ["style.css"]
     }
   ]
