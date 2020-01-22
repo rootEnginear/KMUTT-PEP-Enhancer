@@ -10,5 +10,6 @@
       "js": ["script.min.js"],
       "css": ["style.css"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["index.html"]
 }

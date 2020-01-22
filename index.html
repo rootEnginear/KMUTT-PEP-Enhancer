@@ -1,0 +1,223 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      margin-bottom: 33vh;
+      font-family: "Sarabun", sans-serif;
+    }
+
+    .header-bar {
+      height: 100px;
+      background: #fff;
+    }
+
+    .header-bar > .container,
+    .toolbar > .container {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .header-bar > .container > .header-text {
+      margin: 0;
+      margin-left: auto;
+      color: #4a4a4a;
+    }
+
+    .toolbar {
+      height: 55px;
+      background: #f37735;
+      box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 4px 6px rgba(10, 10, 10, 0.1),
+        0 0 0 1px rgba(10, 10, 10, 0.1);
+    }
+
+    .subject {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 rgba(10, 10, 10, 0),
+        0 0 0 1px rgba(10, 10, 10, 0.1);
+      color: #4a4a4a;
+      display: block;
+      padding: 1.25rem;
+      height: 100%;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+
+      transition: box-shadow 150ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .subject:hover {
+      box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 4px 6px rgba(10, 10, 10, 0.1),
+        0 0 0 1px rgba(10, 10, 10, 0.1);
+      transition: box-shadow 100ms cubic-bezier(0.4, 0, 1, 1);
+      cursor: pointer;
+    }
+
+    .subject > .sid {
+      font-weight: 300;
+      font-size: 1.25rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .subject > .stype,
+    .subject > .syear {
+      font-weight: 700;
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+
+    .subject > .stype {
+      text-transform: uppercase;
+    }
+
+    .subject > .spacer {
+      background-color: #f5f5f5;
+      border: none;
+      display: block;
+      height: 2px;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .subject > .sname {
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .fade-enter-active {
+      transition: opacity .5s, transform .5s;
+    }
+
+    .fade-move {
+      transition: transform .5s;
+    }
+
+    .fade-leave-active {
+      opacity: 0;
+      position: absolute;
+    }
+
+    .fade-leave-to {
+      opacity: 0;
+    }
+
+    input::placeholder {
+      font-family: "Sarabun", sans-serif;
+      transition: padding-left .3s;
+    }
+
+    input:focus::placeholder {
+      padding-left: .5ch;
+    }
+  </style>
+  <title>Past Exam Paper - KMUTT Library</title>
+</head>
+<body>
+  <div class="header-bar ">
+    <div class="container content">
+      <div class="header-logo">
+        <svg
+          width="389px"
+          height="70px"
+          viewBox="0 0 389 70"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g fill="none" fill-rule="evenodd">
+            <path d="M-50-15h1280V85H-50z"></path>
+            <path
+              fill="#f37735"
+              d="M15.26 24.394l-.208.173-11.326 9.978v-10.15H0v21.992h3.726v-8.21l3.063-2.55L15 46.16l.208.227h4.613l-.88-.95-9.48-11.844 9.22-8.193 1.2-1.006m-3.64 35.54c0 4.59-1.77 6.763-6.29 6.763-4.53 0-6.3-2.17-6.3-6.762V47.782H0v13.26c0 5.527 3.52 8.952 9.928 8.952 6.397 0 9.92-3.425 9.92-8.95V50.606h6.62v19.387h3.69V50.607H36.5v19.387h3.686V50.607h5.253v-2.825H16.22v12.153zm24.4-35.154l-7.19 16.986-7.31-16.992-.17-.38h-4.69v21.993h3.69V30.773L31.64 46l.17.387h3.13l.17-.386 6.65-15.21v15.6h3.69V24.4h-4.656m1.638-22.8c0 .838-.68 1.52-1.517 1.52-.838 0-1.516-.682-1.516-1.52 0-.84.67-1.52 1.51-1.52.83 0 1.51.68 1.51 1.52m0 4.56c0 .84-.68 1.52-1.52 1.52S39.38 7 39.38 6.16s.675-1.52 1.513-1.52c.835 0 1.515.68 1.515 1.52m.005 9.12c0 .84-.68 1.52-1.518 1.52s-1.52-.68-1.52-1.52.676-1.52 1.514-1.52c.84 0 1.52.68 1.52 1.52m0 4.56c0 .84-.68 1.52-1.52 1.52s-1.52-.68-1.52-1.52.67-1.52 1.51-1.52c.83 0 1.51.68 1.51 1.52m.01-9.12c0 .84-.68 1.52-1.52 1.52s-1.53-.68-1.53-1.52.68-1.52 1.52-1.52 1.52.68 1.52 1.52m-4.55 0c0 .84-.69 1.52-1.53 1.52-.85 0-1.53-.68-1.53-1.52s.68-1.52 1.52-1.52 1.52.68 1.52 1.52m-4.55 0c0 .84-.69 1.52-1.53 1.52-.84 0-1.53-.68-1.53-1.52s.68-1.52 1.52-1.52 1.52.68 1.52 1.52m18.18 0c0 .84-.68 1.52-1.52 1.52s-1.53-.68-1.53-1.52.68-1.52 1.52-1.52 1.52.68 1.52 1.52m0 4.56c0 .84-.68 1.52-1.52 1.52s-1.52-.68-1.52-1.52c0-.838.68-1.52 1.52-1.52.85 0 1.53.682 1.53 1.52m-4.55-4.56c0 .84-.68 1.52-1.52 1.52s-1.52-.68-1.52-1.52.69-1.52 1.53-1.52c.84 0 1.52.68 1.52 1.52m9.1 9.12c0 .84-.68 1.52-1.53 1.52s-1.5-.68-1.5-1.52c0-.838.68-1.52 1.52-1.52s1.53.682 1.53 1.52m-4.55 0c0 .84-.68 1.52-1.53 1.52-.84 0-1.53-.68-1.53-1.52 0-.838.69-1.52 1.53-1.52.84 0 1.52.682 1.52 1.52m-4.55 0c0 .84-.69 1.52-1.53 1.52-.84 0-1.52-.68-1.52-1.52 0-.838.68-1.52 1.52-1.52s1.52.682 1.52 1.52m13.64 0c0 .84-.68 1.52-1.52 1.52s-1.53-.68-1.53-1.52c0-.838.68-1.52 1.52-1.52s1.52.682 1.52 1.52M51.5 24.4c0 .84-.68 1.52-1.52 1.52s-1.526-.68-1.526-1.52.68-1.52 1.52-1.52c.844 0 1.525.68 1.525 1.52m0 4.56c0 .84-.68 1.52-1.53 1.52-.84 0-1.53-.68-1.53-1.52 0-.838.68-1.52 1.52-1.52s1.52.682 1.52 1.52"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <h1 class="header-text">Past Exam Paper</h1>
+    </div>
+  </div>
+  <div id="app">
+    <nav class="toolbar">
+      <div class="container">
+        <div class="field has-addons" style="margin-bottom:0">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="กรอกชื่อหรือรหัสวิชา"
+              v-model="subjectSearch"
+            />
+          </div>
+          <div class="control">
+            <a class="button" @click="searchSubject()">
+              🔍 ค้นหาวิชา
+            </a>
+          </div>
+        </div>
+        <!-- <span style="font-weight:bold;margin:0 1rem;color:white">|</span>
+        <div class="field has-addons" style="margin-bottom:0">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="กรอกคำค้นหา"
+              v-model="filterSearchText"
+            />
+          </div>
+          <div class="control">
+            <a class="button" @click="filterSubjectText()">
+              📊 กรองผลลัพธ์
+            </a>
+          </div>
+        </div> -->
+      </div>
+    </nav>
+    <div class="container" style="margin-top:2rem;position:relative">
+      <transition-group name="fade" tag="div" class="columns is-multiline is-mobile" :duration="{enter:500,leave:0}">
+        <div
+          class="column is-3-desktop is-4-tablet is-6-mobile"
+          v-for="subject in subjects"
+          :key="subject.s_link"
+          style="transition:all 1s"
+        >
+          <a :href="subject.s_link" class="subject" role="article">
+            <div class="sid">{{subject.s_id}}</div>
+            <div class="stype">{{ subject.s_type }}</div>
+            <div class="syear">เทอม {{subject.s_term}}/{{ subject.s_year }}</div>
+            <div class="spacer"></div>
+            <div class="sname">{{subject.s_name}}</div>
+            <div class="scnum" v-if="subject.s_cnum !== '-'"
+              >&laquo;{{subject.s_cnum}}&raquo;</div
+            >
+          </a>
+        </div>
+        <div
+          class="column is-3-desktop is-4-tablet is-6-mobile"
+          @click="fetchData()"
+          key="addBtn"
+        >
+          <div class="subject" style="font-size:2rem">
+            <div class="syear" style="font-size:5rem">+</div>
+            <div class="spacer"></div>
+            <div class="sname">โหลดเพิ่มเติม</div>
+          </div>
+        </div>
+      </transition-group>
+    </div>
+  </div>
+</body>

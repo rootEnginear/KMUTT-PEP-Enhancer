@@ -4,7 +4,7 @@
   "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
   "main": "",
   "scripts": {
-    "build": "tsc script && uglifyjs script.js -o script.min.js -c -m toplevel --mangle-props",
+    "build": "tsc && uglifyjs script.js -o script.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
