@@ -1,11 +1,11 @@
 {
   "name": "kmutt-pep-enhancer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
   "main": "",
   "scripts": {
-    "build": "tsc && uglifyjs script.js -o script.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "terser src/script.js -o src/script.min.js",
+    "check": "es-check es6 src/script.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/rootEnginear/KMUTT-PEP-Enhancer#readme",
   "devDependencies": {
-    "typescript": "^3.7.4",
-    "uglify-js": "^3.7.5"
+    "es-check": "^5.1.0",
+    "terser": "^4.7.0"
   }
 }

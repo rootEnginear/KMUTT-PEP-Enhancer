@@ -1,14 +1,16 @@
 {
   "manifest_version": 2,
   "name": "KMUTT PEP Enhancer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
   "icons": {},
   "content_scripts": [
     {
-      "matches": ["https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*"],
-      "js": ["script.min.js"],
-      "css": ["style.css"]
+      "matches": [
+        "https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*"
+      ],
+      "js": ["./assets/vue.js", "./assets/buefy.table.js", "./src/script.js"],
+      "css": ["./src/style.css"]
     }
   ],
   "web_accessible_resources": ["index.html"]
