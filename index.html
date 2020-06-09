@@ -50,8 +50,7 @@
     </nav>
     <main class="container" style="margin-top:2rem;position:relative">
       <b-table class="hoverable" ref="subjects_table" @click="downloadExam" :data="subjects" :striped="true"
-        :mobile-cards="false" :sort-multiple="true" :sort-multiple-data="sorting_prioirty"
-        :sort-multiple-key="custom_key" style="border:1px solid #dbdbdb">
+        :mobile-cards="false" :sort-multiple="true" style="border:1px solid #dbdbdb">
 
         <template slot-scope="props">
           <b-table-column field="s_id" label="รหัสวิชา" width="10ch">

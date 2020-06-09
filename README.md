@@ -1,6 +1,6 @@
 # KMUTT PEP Enhancer
 
-![KMUTT PEP Enhacer Preview](https://raw.githubusercontent.com/rootEnginear/KMUTT-PEP-Enhancer/master/preview-v0.2.0.jpg)
+![KMUTT PEP Enhacer Preview](https://raw.githubusercontent.com/rootEnginear/KMUTT-PEP-Enhancer/master/preview-v0.2.jpg)
 KMUTT PEP (Past Exam Paper) Enhancer เป็น Chrome Extension ที่จะทำให้การค้นหาข้อสอบเก่าจากระบบไม่ยากอีกต่อไป และหาข้อสอบที่ต้องการได้รวดเร็วขึ้น
 
 ## Todo:

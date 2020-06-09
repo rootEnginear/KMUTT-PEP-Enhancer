@@ -16,8 +16,6 @@ const vueapp = (original_data) => {
         current_cursor: 0,
         total_record: 1,
         pep_call: 0,
-        sorting_prioirty: [],
-        custom_key: null,
       };
     },
     methods: {
