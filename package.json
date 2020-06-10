@@ -1,6 +1,6 @@
 {
   "name": "kmutt-pep-enhancer",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
   "main": "",
   "scripts": {

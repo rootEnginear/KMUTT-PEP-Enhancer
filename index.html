@@ -48,8 +48,72 @@
         </div>
       </div>
     </nav>
-    <main class="container" style="margin-top:2rem;position:relative">
-      <b-table class="hoverable" ref="subjects_table" @click="downloadExam" :data="subjects" :striped="true"
+    <main class="container" style="margin-top:1.25rem;position:relative">
+      <nav style="text-align:right">
+        <span v-if="show_filter_box">
+          <a @click="clearFilter()" class="has-text-danger"><i class="mdi mdi-filter-remove"></i> ล้างตัวกรอง</a> |
+        </span>
+        <a @click="toggleFilterBox()">{{show_filter_box?"ซ่อน":"แสดง"}}ตัวกรองข้อมูล&nbsp;<i
+            :class="['mdi','mdi-chevron-'+(show_filter_box?'up':'down')]"></i></a>
+      </nav>
+      <div style="height:.75rem"></div>
+      <section v-if="show_filter_box" id="filterToolbar" class="box">
+        <div class="columns is-vcentered">
+          <div class="column is-narrow">
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input v-model="filter.term" :value="1" type="checkbox"> เทอม 1
+                </label>
+                <label class="checkbox">
+                  <input v-model="filter.term" :value="2" type="checkbox"> เทอม 2
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input v-model="filter.type" value="Mid-Term" type="checkbox"> Mid-Term
+                </label>
+                <label class="checkbox">
+                  <input v-model="filter.type" value="Final" type="checkbox"> Final
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <div class="field">
+              <label class="label">ตั้งแต่ปี</label>
+              <div class="control">
+                <input v-model.number="filter.start_year" :min="filter.min_year" :max="filter.max_year" class="input"
+                  type="number" placeholder="2503">
+              </div>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <div class="field">
+              <label class="label">ถึงปี</label>
+              <div class="control">
+                <input v-model.number="filter.end_year" :min="filter.start_year" :max="filter.max_year" class="input"
+                  type="number" placeholder="2563">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">ชื่อข้อสอบ</label>
+              <div class="control">
+                <input ref="subject_name_search" v-model.trim="filter.name" class="input" type="text"
+                  placeholder="Basic Programming...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div v-if="show_filter_box" class="spacer"></div>
+      <b-table class="hoverable" ref="subjects_table" @click="downloadExam" :data="subjects_filtered" :striped="true"
         :mobile-cards="false" :sort-multiple="true" style="border:1px solid #dbdbdb">
 
         <template slot-scope="props">
@@ -62,7 +126,7 @@
           <b-table-column field="s_type" label="ประเภท" width="11ch">
             {{ props.row.s_type.join(", ") }}
           </b-table-column>
-          <b-table-column field="s_year" label="ปี" width="7ch" style="text-align:right">
+          <b-table-column field="s_year" label="ปี" width="7ch">
             {{ props.row.s_year }}
           </b-table-column>
           <b-table-column field="s_name" label="ชื่อข้อสอบ">
@@ -74,15 +138,24 @@
           </b-table-column>
         </template>
 
-        <template slot="footer" v-if="current_cursor !== total_record">
+        <template slot="footer" v-if="subjects_filtered.length && current_cursor !== total_record">
           <div style="font-size:1.1em;text-align:center;padding:.5em .75em" @click="fetchData">
             <i class="mdi mdi-plus"></i>&nbsp;โหลดเพิ่มเติม
           </div>
         </template>
+
+        <template slot="empty">
+          <section class="section">
+            <div class="has-text-grey has-text-centered">
+              <p style="font-size:5rem;margin:0">¯\_(ツ)_/¯</p>
+              <p style="font-size:2rem"><b>ว้า~</b> ไม่มีข้อสอบเลยแย่จัง</p>
+            </div>
+          </section>
+        </template>
       </b-table>
-      <div class="divider"></div>
+      <div class="spacer"></div>
       <div class="has-text-centered">
-        แสดง {{current_cursor}} จาก {{total_record}}
+        แสดงอยู่ {{subjects_filtered.length}} โหลดข้อมูลแล้ว {{current_cursor}} จากทั้งหมด {{total_record}}
       </div>
     </main>
   </div>

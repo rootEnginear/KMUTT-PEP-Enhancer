@@ -1,4 +1,18 @@
 // Most edge cases: https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp?pep_call=CPE+100&offset=40
+function _debounce(func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this,
+      args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    }, wait);
+    if (immediate && !timeout) func.apply(context, args);
+  };
+}
+const CURRENT_YEAR = new Date().getFullYear() + 543;
 
 const vueapp = (original_data) => {
   new Vue({
@@ -16,7 +30,92 @@ const vueapp = (original_data) => {
         current_cursor: 0,
         total_record: 1,
         pep_call: 0,
+        show_filter_box: false,
+        filter: {
+          name: null,
+          type: ["Mid-Term", "Final"],
+          term: [1, 2],
+          start_year: 2503,
+          end_year: CURRENT_YEAR,
+          min_year: 2503,
+          max_year: CURRENT_YEAR,
+        },
+        filter_linted: {
+          name: null,
+          type: ["Mid-Term", "Final"],
+          term: [1, 2],
+          start_year: 2503,
+          end_year: CURRENT_YEAR,
+        },
       };
+    },
+    computed: {
+      subjects_filtered() {
+        let filtered_subjects = this.subjects;
+        const { name, type, term, start_year, end_year } = this.filter_linted;
+        // If there is a name, filter it
+        if (name) {
+          filtered_subjects = filtered_subjects.filter(({ s_name }) =>
+            s_name.match(new RegExp(name, "gi"))
+          );
+        }
+        // Filter term
+        // Find which term is not in the array
+        const filter_out_term = [[1, 2], term].reduce((a, b) =>
+          a.filter((c) => !b.includes(c))
+        );
+        if (filter_out_term.length) {
+          filtered_subjects = filtered_subjects.filter(
+            ({ s_term }) =>
+              [s_term, filter_out_term].reduce((a, b) =>
+                a.filter((c) => !b.includes(c))
+              ).length
+          );
+        }
+        // Filter type
+        // Find which type is not in the array
+        const filter_out_type = [["Mid-Term", "Final"], type].reduce((a, b) =>
+          a.filter((c) => !b.includes(c))
+        );
+        if (filter_out_type.length) {
+          filtered_subjects = filtered_subjects.filter(
+            ({ s_type }) =>
+              [s_type, filter_out_type].reduce((a, b) =>
+                a.filter((c) => !b.includes(c))
+              ).length
+          );
+        }
+        // Filter years
+        filtered_subjects = filtered_subjects.filter(
+          ({ s_year }) => s_year >= start_year && s_year <= end_year
+        );
+        return filtered_subjects;
+      },
+    },
+    watch: {
+      filter: {
+        handler: _debounce(function (val) {
+          // Year validating
+          if (val.start_year < val.min_year)
+            this.filter.start_year = val.min_year;
+          if (val.start_year > val.max_year)
+            this.filter.start_year = val.max_year;
+          if (val.end_year > val.max_year) this.filter.end_year = val.max_year;
+          if (val.end_year < val.min_year)
+            this.filter.end_year = val.start_year;
+          if (val.end_year < val.start_year)
+            this.filter.end_year = val.start_year;
+          // Apply filtering
+          this.filter_linted = (({
+            name,
+            type,
+            term,
+            start_year,
+            end_year,
+          }) => ({ name, type, term, start_year, end_year }))(val);
+        }, 500),
+        deep: true,
+      },
     },
     methods: {
       phaser(doc) {
@@ -125,6 +224,22 @@ const vueapp = (original_data) => {
             this.current_cursor = current_cursor;
             this.total_record = total_record;
           });
+      },
+      toggleFilterBox() {
+        this.show_filter_box = !this.show_filter_box;
+        if (this.show_filter_box)
+          this.$nextTick(() => this.$refs.subject_name_search.focus());
+      },
+      clearFilter() {
+        this.filter = {
+          name: null,
+          type: ["Mid-Term", "Final"],
+          term: [1, 2],
+          start_year: 2503,
+          end_year: CURRENT_YEAR,
+          min_year: 2503,
+          max_year: CURRENT_YEAR,
+        };
       },
       debug(event) {
         return console.log("Method called! ", event);
