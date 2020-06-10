@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "build": "terser src/script.js -o src/script.min.js",
-    "check": "es-check es6 src/script.js"
+    "es-check": "es-check es6 src/script.js"
   },
   "repository": {
     "type": "git",
