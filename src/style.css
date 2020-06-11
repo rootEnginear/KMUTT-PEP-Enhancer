@@ -2,34 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
-.mdi::before {
-  font-size: 24px;
-  line-height: 14px;
-}
-
-.header-bar {
-  height: 100px;
-  background: #fff;
-}
-
 .header-bar > .container,
 .toolbar > .container {
   display: flex;
   align-items: center;
   height: 100%;
-}
-
-.header-bar > .container > .header-text {
-  margin: 0;
-  margin-left: auto;
-  color: #4a4a4a;
-}
-
-.toolbar {
-  height: 55px;
-  background: #f37735;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 4px 6px rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.1);
 }
 
 label.checkbox {
@@ -53,12 +30,6 @@ label.checkbox {
 
 .button:focus:not(:active) {
   box-shadow: 0 0 0 0.125em rgba(243, 119, 53, 0.25) !important;
-}
-
-.gotop-button {
-  position: fixed !important;
-  bottom: 2.5rem;
-  right: 1.25rem;
 }
 
 a.is-link:not(:hover) {
@@ -97,5 +68,5 @@ input:focus::placeholder {
 }
 
 .spacer {
-  margin-top: 1.25rem;
+  margin-top: 1.25rem !important;
 }
