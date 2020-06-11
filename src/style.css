@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .mdi::before {
   font-size: 24px;
   line-height: 14px;
@@ -28,62 +32,6 @@
     0 0 0 1px rgba(10, 10, 10, 0.1);
 }
 
-/* .subject {
-  background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 rgba(10, 10, 10, 0),
-    0 0 0 1px rgba(10, 10, 10, 0.1);
-  color: #4a4a4a;
-  display: block;
-  padding: 1.25rem;
-  height: 100%;
-  text-align: center;
-  letter-spacing: 0.5px;
-  text-decoration: none;
-
-  transition: box-shadow 150ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.subject:hover {
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 4px 6px rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.1);
-  transition: box-shadow 100ms cubic-bezier(0.4, 0, 1, 1);
-  cursor: pointer;
-}
-
-.subject > .sid {
-  font-weight: 300;
-  font-size: 1.25rem;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-}
-
-.subject > .stype,
-.subject > .syear {
-  font-weight: 700;
-  font-size: 1.75rem;
-  line-height: 1.25;
-}
-
-.subject > .stype {
-  text-transform: uppercase;
-}
-
-.subject > .spacer {
-  background-color: #f5f5f5;
-  border: none;
-  display: block;
-  height: 2px;
-  margin: 1rem 0 0.5rem;
-}
-
-.subject > .sname {
-  font-weight: 400;
-  font-size: 1.1rem;
-  line-height: 1.7;
-} */
-
 label.checkbox {
   user-select: none;
   display: block;
@@ -94,21 +42,31 @@ label.checkbox {
 .input:active,
 .input:focus,
 .is-active.input,
-.is-active.textarea,
-.is-focused.input,
-.is-focused.textarea,
-.select select.is-active,
-.select select.is-focused,
-.select select:active,
-.select select:focus,
-.textarea:active,
-.textarea:focus {
+.is-focused.input {
   border-color: #f37735 !important;
   box-shadow: 0 0 0 0.125em rgba(243, 119, 53, 0.25) !important;
 }
 
-a:not(:hover):not(.button) {
+.button:focus {
+  border-color: #f37735 !important;
+}
+
+.button:focus:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(243, 119, 53, 0.25) !important;
+}
+
+.gotop-button {
+  position: fixed !important;
+  bottom: 2.5rem;
+  right: 1.25rem;
+}
+
+a.is-link:not(:hover) {
   color: #3273dc !important;
+}
+
+a.is-link.is-danger:not(:hover) {
+  color: #ff3860 !important;
 }
 
 input::placeholder {
@@ -124,19 +82,13 @@ input:focus::placeholder {
   cursor: pointer;
 }
 
-.b-table.hoverable > .table-wrapper > .table > tbody > tr:hover,
+.b-table.hoverable > .table-wrapper > .table > tbody > tr.has-link:hover,
 .b-table.hoverable > .table-wrapper > .table > tfoot > tr:hover {
   background-color: #fff6a8 !important;
   cursor: pointer;
 }
 
-.b-table.hoverable
-  > .table-wrapper
-  > .table
-  > thead
-  > tr
-  > th:hover
-  > .th-wrap {
+.b-table.hoverable > .table-wrapper > .table > thead > tr > th:hover > .th-wrap {
   text-decoration: underline dotted;
 }
 

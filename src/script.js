@@ -18,10 +18,21 @@ const vueapp = (original_data) => {
   new Vue({
     el: "#app",
     created() {
+      this.anchor_element = document.createElement("a");
+      this.anchor_element.target = "_blank";
+
       [this.subjects, this.current_cursor, this.total_record] = this.phaser(
         original_data
       );
       this.pep_call = new URLSearchParams(location.search).get("pep_call");
+
+      window.addEventListener(
+        "scroll",
+        _debounce(() => {
+          this.show_goup_button =
+            (document.documentElement.scrollTop || document.body.scrollTop) > 150;
+        }, 500)
+      );
     },
     data() {
       return {
@@ -47,6 +58,8 @@ const vueapp = (original_data) => {
           start_year: 2503,
           end_year: CURRENT_YEAR,
         },
+        anchor_element: null,
+        show_goup_button: false,
       };
     },
     computed: {
@@ -67,9 +80,8 @@ const vueapp = (original_data) => {
         if (filter_out_term.length) {
           filtered_subjects = filtered_subjects.filter(
             ({ s_term }) =>
-              [s_term, filter_out_term].reduce((a, b) =>
-                a.filter((c) => !b.includes(c))
-              ).length
+              [s_term, filter_out_term].reduce((a, b) => a.filter((c) => !b.includes(c)))
+                .length
           );
         }
         // Filter type
@@ -80,9 +92,8 @@ const vueapp = (original_data) => {
         if (filter_out_type.length) {
           filtered_subjects = filtered_subjects.filter(
             ({ s_type }) =>
-              [s_type, filter_out_type].reduce((a, b) =>
-                a.filter((c) => !b.includes(c))
-              ).length
+              [s_type, filter_out_type].reduce((a, b) => a.filter((c) => !b.includes(c)))
+                .length
           );
         }
         // Filter years
@@ -96,23 +107,19 @@ const vueapp = (original_data) => {
       filter: {
         handler: _debounce(function (val) {
           // Year validating
-          if (val.start_year < val.min_year)
-            this.filter.start_year = val.min_year;
-          if (val.start_year > val.max_year)
-            this.filter.start_year = val.max_year;
+          if (val.start_year < val.min_year) this.filter.start_year = val.min_year;
+          if (val.start_year > val.max_year) this.filter.start_year = val.max_year;
           if (val.end_year > val.max_year) this.filter.end_year = val.max_year;
-          if (val.end_year < val.min_year)
-            this.filter.end_year = val.start_year;
-          if (val.end_year < val.start_year)
-            this.filter.end_year = val.start_year;
+          if (val.end_year < val.min_year) this.filter.end_year = val.start_year;
+          if (val.end_year < val.start_year) this.filter.end_year = val.start_year;
           // Apply filtering
-          this.filter_linted = (({
+          this.filter_linted = (({ name, type, term, start_year, end_year }) => ({
             name,
             type,
             term,
             start_year,
             end_year,
-          }) => ({ name, type, term, start_year, end_year }))(val);
+          }))(val);
         }, 500),
         deep: true,
       },
@@ -145,8 +152,7 @@ const vueapp = (original_data) => {
           // Type can by "Mid-Term", "Final", "Mid-Term,Final"
           const formatted_type = matches[6].split(",");
           // Link can be a link or "#"
-          const formatted_link =
-            matches[7].trim() === "#" ? "" : matches[7].trim();
+          const formatted_link = matches[7].trim() === "#" ? "" : matches[7].trim();
           return {
             s_id: matches[1].trim(),
             s_name: matches[2].trim(),
@@ -184,7 +190,10 @@ const vueapp = (original_data) => {
         ];
       },
       href(url) {
-        return url && (window.location.href = url);
+        if (url) {
+          this.anchor_element.href = url;
+          this.anchor_element.click();
+        }
       },
       searchSubject() {
         if (this.subject_search === "") return;
@@ -194,14 +203,10 @@ const vueapp = (original_data) => {
         )
           .then((e) => e.text())
           .then((html_string) => {
-            const html_dom = document
-              .createRange()
-              .createContextualFragment(html_string);
-            [
-              this.subjects,
-              this.current_cursor,
-              this.total_record,
-            ] = this.phaser(html_dom);
+            const html_dom = document.createRange().createContextualFragment(html_string);
+            [this.subjects, this.current_cursor, this.total_record] = this.phaser(
+              html_dom
+            );
           });
       },
       downloadExam({ s_link }) {
@@ -214,15 +219,12 @@ const vueapp = (original_data) => {
         )
           .then((e) => e.text())
           .then((html_string) => {
-            const html_dom = document
-              .createRange()
-              .createContextualFragment(html_string);
-            const [subjects, current_cursor, total_record] = this.phaser(
-              html_dom
-            );
+            const html_dom = document.createRange().createContextualFragment(html_string);
+            const [subjects, current_cursor, total_record] = this.phaser(html_dom);
             this.subjects = this.subjects.concat(subjects);
             this.current_cursor = current_cursor;
             this.total_record = total_record;
+            this.$nextTick(() => window.scrollTo(0, document.body.scrollHeight));
           });
       },
       toggleFilterBox() {
@@ -240,6 +242,9 @@ const vueapp = (original_data) => {
           min_year: 2503,
           max_year: CURRENT_YEAR,
         };
+      },
+      goUp() {
+        window.scrollTo(0, 0);
       },
       debug(event) {
         return console.log("Method called! ", event);

@@ -2,24 +2,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/buefy@0.8.13/dist/buefy.min.css" />
-  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css" />
-  <style>
-    body {
-      margin: 0;
-      margin-bottom: 3rem;
-      font-family: "Sarabun", sans-serif;
-    }
-  </style>
+  <link rel="stylesheet"
+    href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css" />
   <title>Past Exam Paper - KMUTT Library</title>
 </head>
 
-<body>
+<body style="margin:0 0 3rem;font-family:Sarabun,sans-serif">
   <header class="header-bar">
     <div class="container content">
       <div class="header-logo">
-        <svg width="389px" height="70px" viewBox="0 0 389 70" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        <svg width="389px" height="70px" viewBox="0 0 389 70" version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink">
           <g fill="none" fill-rule="evenodd">
             <path d="M-50-15h1280V85H-50z"></path>
@@ -37,7 +33,8 @@
       <div class="container">
         <div class="field has-addons" style="margin-bottom:0">
           <div class="control">
-            <input class="input" type="text" placeholder="กรอกชื่อหรือรหัสวิชา" v-model.trim="subject_search"
+            <input class="input" type="text" placeholder="กรอกชื่อหรือรหัสวิชา"
+              v-model.trim="subject_search"
               @keyup.enter="searchSubject()" />
           </div>
           <div class="control">
@@ -49,72 +46,90 @@
       </div>
     </nav>
     <main class="container" style="margin-top:1.25rem;position:relative">
-      <nav style="text-align:right">
-        <span v-if="show_filter_box">
-          <a @click="clearFilter()" class="has-text-danger"><i class="mdi mdi-filter-remove"></i> ล้างตัวกรอง</a> |
-        </span>
-        <a @click="toggleFilterBox()">{{show_filter_box?"ซ่อน":"แสดง"}}ตัวกรองข้อมูล&nbsp;<i
-            :class="['mdi','mdi-chevron-'+(show_filter_box?'up':'down')]"></i></a>
-      </nav>
-      <div style="height:.75rem"></div>
-      <section v-if="show_filter_box" id="filterToolbar" class="box">
-        <div class="columns is-vcentered">
-          <div class="column is-narrow">
-            <div class="field">
-              <div class="control">
-                <label class="checkbox">
-                  <input v-model="filter.term" :value="1" type="checkbox"> เทอม 1
-                </label>
-                <label class="checkbox">
-                  <input v-model="filter.term" :value="2" type="checkbox"> เทอม 2
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="column is-narrow">
-            <div class="field">
-              <div class="control">
-                <label class="checkbox">
-                  <input v-model="filter.type" value="Mid-Term" type="checkbox"> Mid-Term
-                </label>
-                <label class="checkbox">
-                  <input v-model="filter.type" value="Final" type="checkbox"> Final
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="column is-narrow">
-            <div class="field">
-              <label class="label">ตั้งแต่ปี</label>
-              <div class="control">
-                <input v-model.number="filter.start_year" :min="filter.min_year" :max="filter.max_year" class="input"
-                  type="number" placeholder="2503">
-              </div>
-            </div>
-          </div>
-          <div class="column is-narrow">
-            <div class="field">
-              <label class="label">ถึงปี</label>
-              <div class="control">
-                <input v-model.number="filter.end_year" :min="filter.start_year" :max="filter.max_year" class="input"
-                  type="number" placeholder="2563">
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label class="label">ชื่อข้อสอบ</label>
-              <div class="control">
-                <input ref="subject_name_search" v-model.trim="filter.name" class="input" type="text"
-                  placeholder="Basic Programming...">
-              </div>
-            </div>
-          </div>
+      <!-- Filter -->
+      <section>
+        <div style="text-align:right">
+          <span v-if="show_filter_box">
+            <a class="is-link is-danger" @click="clearFilter()"><i
+                class="mdi mdi-filter-remove"></i> ล้างตัวกรอง</a> |
+          </span>
+          <a class="is-link"
+            @click="toggleFilterBox()">{{show_filter_box?"ซ่อน":"แสดง"}}ตัวกรองข้อมูล&nbsp;<i
+              :class="['mdi','mdi-chevron-'+(show_filter_box?'up':'down')]"></i></a>
         </div>
+        <div style="height:.75rem"></div>
+        <section v-if="show_filter_box" id="filterToolbar" class="box">
+          <div class="columns is-vcentered">
+            <div class="column is-narrow">
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input v-model="filter.term" :value="1" type="checkbox"> เทอม 1
+                  </label>
+                  <label class="checkbox">
+                    <input v-model="filter.term" :value="2" type="checkbox"> เทอม 2
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="column is-narrow">
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input v-model="filter.type" value="Mid-Term" type="checkbox">
+                    Mid-Term
+                  </label>
+                  <label class="checkbox">
+                    <input v-model="filter.type" value="Final" type="checkbox"> Final
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="column is-narrow">
+              <div class="field">
+                <label class="label">ตั้งแต่ปี</label>
+                <div class="control">
+                  <input v-model.number="filter.start_year" :min="filter.min_year"
+                    :max="filter.max_year" class="input"
+                    type="number" placeholder="2503">
+                </div>
+              </div>
+            </div>
+            <div class="column is-narrow">
+              <div class="field">
+                <label class="label">ถึงปี</label>
+                <div class="control">
+                  <input v-model.number="filter.end_year" :min="filter.start_year"
+                    :max="filter.max_year" class="input"
+                    type="number" placeholder="2563">
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">ชื่อข้อสอบ</label>
+                <div class="control">
+                  <input ref="subject_name_search" v-model.trim="filter.name"
+                    class="input"
+                    type="text"
+                    placeholder="Basic Programming...">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
       <div v-if="show_filter_box" class="spacer"></div>
-      <b-table class="hoverable" ref="subjects_table" @click="downloadExam" :data="subjects_filtered" :striped="true"
-        :mobile-cards="false" :sort-multiple="true" style="border:1px solid #dbdbdb">
+      <!-- Data Table -->
+      <b-table ref="subjects_table"
+        :data="subjects_filtered"
+        striped
+        :mobile-cards="false"
+        sort-multiple
+        @click="downloadExam"
+        :row-class="({s_link}) => s_link ? 'has-link' : ''"
+        class="hoverable"
+        style="border:1px solid #dbdbdb">
 
         <template slot-scope="props">
           <b-table-column field="s_id" label="รหัสวิชา" width="10ch">
@@ -138,8 +153,10 @@
           </b-table-column>
         </template>
 
-        <template slot="footer" v-if="subjects_filtered.length && current_cursor !== total_record">
-          <div style="font-size:1.1em;text-align:center;padding:.5em .75em" @click="fetchData">
+        <template slot="footer"
+          v-if="subjects_filtered.length && current_cursor !== total_record">
+          <div style="font-size:1.1em;text-align:center;padding:.5em .75em"
+            @click="fetchData">
             <i class="mdi mdi-plus"></i>&nbsp;โหลดเพิ่มเติม
           </div>
         </template>
@@ -153,9 +170,13 @@
           </section>
         </template>
       </b-table>
+      <button v-if="show_goup_button" @click="goUp()" class="button gotop-button">
+        <i class="mdi mdi-chevron-up" style="font-size:1.5rem"></i>
+      </button>
       <div class="spacer"></div>
       <div class="has-text-centered">
-        แสดงอยู่ {{subjects_filtered.length}} โหลดข้อมูลแล้ว {{current_cursor}} จากทั้งหมด {{total_record}}
+        แสดงอยู่ {{subjects_filtered.length}} โหลดข้อมูลแล้ว {{current_cursor}} จากทั้งหมด
+        {{total_record}}
       </div>
     </main>
   </div>
