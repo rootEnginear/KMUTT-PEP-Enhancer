@@ -197,6 +197,10 @@ const vueapp = (original_data) => {
       },
       searchSubject() {
         if (this.subject_search === "") return;
+        this.subject_search = this.subject_search.replace(
+          /^([A-Za-z]{3})(\d{3})$/,
+          "$1 $2"
+        );
         this.pep_call = encodeURIComponent(this.subject_search);
         fetch(
           `https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp?pep_call=${this.pep_call}`
