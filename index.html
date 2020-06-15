@@ -2,6 +2,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="preconnect" href="https://cdn.materialdesignicons.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdn.materialdesignicons.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/buefy@0.8.2/dist/buefy.min.css" />
@@ -37,7 +47,9 @@
       <div class="container">
         <div class="field has-addons mb-0">
           <div class="control">
-            <input class="input" type="text" placeholder="กรอกชื่อหรือรหัสวิชา"
+            <label for="subject_search_input" class="is-sr-only">ค้นหาวิชา</label>
+            <input id="subject_search_input" class="input" type="text"
+              placeholder="กรอกชื่อหรือรหัสวิชา"
               v-model.trim="subject_search"
               @keyup.enter="searchSubject()" />
           </div>
