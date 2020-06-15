@@ -26,8 +26,6 @@
 
 ท่านก็จะสามารถใช้ KMUTT PEP Enhancer ได้แล้วครับ
 
-หากท่านพบปัญหาหรือสนใจพัฒนาเพิ่มเติม ท่านสามารถเปิด Issue หรือทำการ fork repository แล้วส่ง PR มาได้เลยครับ
-
 ## 🐛 Bug Reporting & Contributing
 
 - หากท่านพบปัญหาในการใช้งานต่างๆ หรือต้องการฟีเจอร์ใหม่ๆ ท่านสามารถแจ้งผ่าน [Issues](https://github.com/rootEnginear/KMUTT-PEP-Enhancer/issues) ได้เลยครับ
