@@ -7,8 +7,8 @@
   "content_scripts": [
     {
       "matches": ["https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*"],
-      "js": ["./assets/vue.js", "./assets/buefy.table.js", "./src/script.js"],
-      "css": ["./src/style.css"]
+      "js": ["./js/vue.js", "./js/buefy.table.js", "./src/script.min.js"],
+      "css": ["./src/style.min.css"]
     }
   ],
   "web_accessible_resources": ["index.html"]

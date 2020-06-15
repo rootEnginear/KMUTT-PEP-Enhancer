@@ -4,7 +4,9 @@
   "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
   "main": "",
   "scripts": {
-    "build": "terser src/script.js -o src/script.min.js",
+    "build-css": "postcss --use autoprefixer --use cssnano -o src/style.min.css src/style.css",
+    "build-js": "terser src/script.js -o src/script.min.js",
+    "build": "npm run build-css && npm run build-js",
     "es-check": "es-check es6 src/script.js"
   },
   "repository": {
@@ -22,7 +24,10 @@
   },
   "homepage": "https://github.com/rootEnginear/KMUTT-PEP-Enhancer#readme",
   "devDependencies": {
+    "autoprefixer": "^9.8.0",
+    "cssnano": "^4.1.10",
     "es-check": "^5.1.0",
+    "postcss-cli": "^7.1.1",
     "terser": "^4.7.0"
   }
 }
