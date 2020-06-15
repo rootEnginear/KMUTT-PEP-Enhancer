@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "KMUTT PEP Enhancer",
-  "version": "0.2.7",
-  "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
+  "version": "1.0.0.0",
+  "description": "KMUTT Past Exam Paper Enhancer for better paper browsing experience.",
   "icons": {},
   "content_scripts": [
     {
