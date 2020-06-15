@@ -1,4 +1,10 @@
-// Most edge cases: https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp?pep_call=CPE+100&offset=40
+// Known edge cases:
+// 1. มี 2 รหัสวิชา (CPE 100,CVE 100 2 Final 2550)
+// 2. มี 2 เทอม (CPE 100 1,2 Mid-Term,Final 2549)
+// 3. มีทั้ง Mid-Term และ Final (CPE 100 1,2 Mid-Term,Final 2549)
+// 4. ไม่มีลิงก์ให้ดาวน์โหลดข้อสอบ (CPE 100 1,2 Mid-Term,Final 2549)
+// 5. ไม่มีชื่อข้อสอบ (CP เทอม 2 Mid-Term 2561)
+
 function _debounce(func, wait, immediate) {
   var timeout;
   return function () {
@@ -143,7 +149,7 @@ const vueapp = (original_data) => {
         ];
 
         const extractData = (str) => {
-          const pattern = /\d+ รหัสวิขา (.+?) ชื่อวิชา (.+?) Call Number(.*?) ปีการศีกษา (\d{4}) ภาคเรียน (.+?) ข้อสอบ (.+?) ลิงก์ (.+)/;
+          const pattern = /\d+ รหัสวิขา (.+?) ชื่อวิชา ?(.+?) ?Call Number(.*?) ปีการศีกษา (\d{4}) ภาคเรียน (.+?) ข้อสอบ (.+?) ลิงก์ (.+)/;
           const matches = pattern.exec(str) || ["", "", "", "", "", "", ""];
           // Term can be "1", "2", "1,2"
           const formatted_term = isNaN(+matches[5])
