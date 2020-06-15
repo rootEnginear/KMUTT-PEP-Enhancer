@@ -1,7 +1,7 @@
 {
   "name": "kmutt-pep-enhancer",
-  "version": "0.2.7",
-  "description": "KMUTT PEP (Past Exam Paper) Enhancer for fast paper browsing",
+  "version": "1.0.0",
+  "description": "KMUTT Past Exam Paper Enhancer for better paper browsing experience.",
   "main": "",
   "scripts": {
     "build-css": "postcss --use autoprefixer --use cssnano -o src/style.min.css src/style.css",
