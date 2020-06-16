@@ -1,8 +1,11 @@
 # KMUTT PEP Enhancer
 
-![KMUTT PEP Enhacer Preview](https://raw.githubusercontent.com/rootEnginear/KMUTT-PEP-Enhancer/master/preview-v1.0.0.0.jpg)
+[![KMUTT PEP Enhacer Preview](https://raw.githubusercontent.com/rootEnginear/KMUTT-PEP-Enhancer/master/preview-v1.0.0.0.jpg)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
 
 [![License: MIT](https://img.shields.io/github/license/rootEnginear/KMUTT-PEP-Enhancer)](https://opensource.org/licenses/MIT)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/gmikliggljoienjhdahmffpfkakkafff)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/gmikliggljoienjhdahmffpfkakkafff)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/gmikliggljoienjhdahmffpfkakkafff)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
 
 > KMUTT PEP Enhancer เป็น Extension ที่จะทำให้การค้นหาข้อสอบเก่าจากระบบ Past Exam Paper ของสำนักหอสมุด มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรีสามารถทำได้สะดวกมากยิ่งขึ้น
 
@@ -16,15 +19,8 @@
 
 ## 💻 Installation
 
-ตอนนี้ทางผู้พัฒนากำลังจะนำส่วนเสริมขึ้น Chrome Web Store เร็วๆ นี้ ถ้าหากท่านอยากทดลองใช้สามารถทำได้ตามขั้นตอนดังต่อไปนี้
-
-1. ดาวน์โหลด repository นี้ลงในคอมพิวเตอร์
-2. ไปที่ `chrome://extensions/`
-3. เปิด "โหมดนักพัฒนาซอฟต์แวร์" (Developer mode)
-4. กดที่ปุ่ม "โหลดส่วนขยายที่แตกไฟล์แล้ว" (Load unpacked)
-5. เลือกโฟล์เดอร์ที่จัดเก็บ repository นี้
-
-ท่านก็จะสามารถใช้ KMUTT PEP Enhancer ได้แล้วครับ
+ท่านสามารถดาวน์โหลด Extension สำหรับ Google Chrome และ Microsoft Edge Chromium ได้จากลิงก์นี้ครับ  
+[https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
 
 ## 🐛 Bug Reporting & Contributing
 
