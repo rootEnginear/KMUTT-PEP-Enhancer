@@ -75,7 +75,7 @@ const vueapp = (original_data) => {
         // If there is a name, filter it
         if (name) {
           filtered_subjects = filtered_subjects.filter(({ s_name }) =>
-            s_name.match(new RegExp(name, "gi"))
+            s_name.match(new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"))
           );
         }
         // Filter term

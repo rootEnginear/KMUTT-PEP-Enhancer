@@ -1,6 +1,6 @@
 # KMUTT PEP Enhancer
 
-![KMUTT PEP Enhacer Preview](https://raw.githubusercontent.com/rootEnginear/KMUTT-PEP-Enhancer/master/preview-v0.2.5.jpg)
+![KMUTT PEP Enhacer Preview](https://raw.githubusercontent.com/rootEnginear/KMUTT-PEP-Enhancer/master/preview-v1.0.0.0.jpg)
 
 [![License: MIT](https://img.shields.io/github/license/rootEnginear/KMUTT-PEP-Enhancer)](https://opensource.org/licenses/MIT)
 
