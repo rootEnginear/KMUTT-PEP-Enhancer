@@ -54,7 +54,7 @@ input:focus::placeholder {
 }
 
 .b-table.hoverable > .table-wrapper > .table > tbody > tr.has-link:hover,
-.b-table.hoverable > .table-wrapper > .table > tfoot > tr:hover {
+.b-table.hoverable > .table-wrapper > .table > tfoot > tr:hover > th > .hoverable {
   background-color: #fff6a8 !important;
   cursor: pointer;
 }

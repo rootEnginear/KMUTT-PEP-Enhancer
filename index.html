@@ -169,11 +169,15 @@
           </b-table-column>
         </template>
 
-        <template slot="footer"
-          v-if="subjects_filtered.length && current_cursor !== total_record">
-          <div class="has-text-centered px-2 py-3" style="font-size:1.1em"
+        <template slot="footer">
+          <div v-if="current_cursor !== total_record"
+            class="hoverable has-text-centered px-2 py-3"
+            style="font-size:1.1em"
             @click="fetchData">
             <i class="mdi mdi-plus"></i>&nbsp;โหลดเพิ่มเติม
+          </div>
+          <div v-else-if="total_record !== 0" class="has-text-centered px-2 py-3">
+            ไม่มีข้อสอบเพิ่มเติมแล้ว
           </div>
         </template>
 
