@@ -5,7 +5,6 @@
 [![License: MIT](https://img.shields.io/github/license/rootEnginear/KMUTT-PEP-Enhancer)](https://opensource.org/licenses/MIT)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/gmikliggljoienjhdahmffpfkakkafff)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/gmikliggljoienjhdahmffpfkakkafff)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/gmikliggljoienjhdahmffpfkakkafff)](https://chrome.google.com/webstore/detail/kmutt-pep-enhancer/gmikliggljoienjhdahmffpfkakkafff)
 
 > KMUTT PEP Enhancer เป็น Extension ที่จะทำให้การค้นหาข้อสอบเก่าจากระบบ Past Exam Paper ของสำนักหอสมุด มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรีสามารถทำได้สะดวกมากยิ่งขึ้น
 
