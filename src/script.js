@@ -5,25 +5,14 @@
 // 4. ไม่มีลิงก์ให้ดาวน์โหลดข้อสอบ (CPE 100 1,2 Mid-Term,Final 2549)
 // 5. ไม่มีชื่อข้อสอบ (CP เทอม 2 Mid-Term 2561)
 
-function _debounce(func, wait, immediate) {
-  var timeout;
-  return function () {
-    var context = this,
-      args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    }, wait);
-    if (immediate && !timeout) func.apply(context, args);
-  };
-}
 const CURRENT_YEAR = new Date().getFullYear() + 543;
 
 const vueapp = (original_data) => {
   new Vue({
     el: "#app",
     created() {
+      this.host = location.origin + location.pathname;
+
       this.anchor_element = document.createElement("a");
       this.anchor_element.target = "_blank";
 
@@ -42,12 +31,14 @@ const vueapp = (original_data) => {
     },
     data() {
       return {
+        host: null,
         subjects: [],
         subject_search: "",
         current_cursor: 0,
         total_record: 1,
         pep_call: 0,
         show_filter_box: false,
+        filter_timeout: null,
         filter: {
           name: null,
           type: ["Mid-Term", "Final"],
@@ -66,6 +57,9 @@ const vueapp = (original_data) => {
         },
         anchor_element: null,
         show_goup_button: false,
+        is_searching_subject: false,
+        is_filter_waiting: false,
+        is_fetching_data: false,
       };
     },
     computed: {
@@ -111,22 +105,28 @@ const vueapp = (original_data) => {
     },
     watch: {
       filter: {
-        handler: _debounce(function (val) {
-          // Year validating
-          if (val.start_year < val.min_year) this.filter.start_year = val.min_year;
-          if (val.start_year > val.max_year) this.filter.start_year = val.max_year;
-          if (val.end_year > val.max_year) this.filter.end_year = val.max_year;
-          if (val.end_year < val.min_year) this.filter.end_year = val.start_year;
-          if (val.end_year < val.start_year) this.filter.end_year = val.start_year;
-          // Apply filtering
-          this.filter_linted = (({ name, type, term, start_year, end_year }) => ({
-            name,
-            type,
-            term,
-            start_year,
-            end_year,
-          }))(val);
-        }, 500),
+        handler(val) {
+          this.is_filter_waiting = true;
+          clearTimeout(this.filter_timeout);
+          this.filter_timeout = setTimeout((_) => {
+            // Year validating
+            if (val.start_year < val.min_year) this.filter.start_year = val.min_year;
+            if (val.start_year > val.max_year) this.filter.start_year = val.max_year;
+            if (val.end_year > val.max_year) this.filter.end_year = val.max_year;
+            if (val.end_year < val.min_year) this.filter.end_year = val.start_year;
+            if (val.end_year < val.start_year) this.filter.end_year = val.start_year;
+            // Apply filtering
+            this.filter_linted = (({ name, type, term, start_year, end_year }) => ({
+              name,
+              type,
+              term,
+              start_year,
+              end_year,
+            }))(val);
+            // Stop spinner
+            this.is_filter_waiting = false;
+          }, 500);
+        },
         deep: true,
       },
     },
@@ -208,25 +208,24 @@ const vueapp = (original_data) => {
           "$1 $2"
         );
         this.pep_call = encodeURIComponent(this.subject_search);
-        fetch(
-          `https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp?pep_call=${this.pep_call}`
-        )
+        this.is_searching_subject = true;
+        fetch(`${this.host}?pep_call=${this.pep_call}`)
           .then((e) => e.text())
           .then((html_string) => {
             const html_dom = document.createRange().createContextualFragment(html_string);
             [this.subjects, this.current_cursor, this.total_record] = this.phaser(
               html_dom
             );
-          });
+          })
+          .finally((_) => (this.is_searching_subject = false));
       },
       downloadExam({ s_link }) {
         return this.href(s_link);
       },
       fetchData() {
         const pep_call_params = this.pep_call || "";
-        fetch(
-          `https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp?pep_call=${pep_call_params}&offset=${this.current_cursor}`
-        )
+        this.is_fetching_data = true;
+        fetch(`${this.host}?pep_call=${pep_call_params}&offset=${this.current_cursor}`)
           .then((e) => e.text())
           .then((html_string) => {
             const html_dom = document.createRange().createContextualFragment(html_string);
@@ -235,7 +234,8 @@ const vueapp = (original_data) => {
             this.current_cursor = current_cursor;
             this.total_record = total_record;
             this.$nextTick(() => window.scrollTo(0, document.body.scrollHeight));
-          });
+          })
+          .finally((_) => (this.is_fetching_data = false));
       },
       toggleFilterBox() {
         this.show_filter_box = !this.show_filter_box;

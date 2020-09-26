@@ -54,7 +54,8 @@
               @keyup.enter="searchSubject()" />
           </div>
           <div class="control">
-            <a class="button" @click="searchSubject()">
+            <a :class="{'button': 1, 'is-loading': is_searching_subject}"
+              @click="searchSubject()">
               <i class="mdi mdi-magnify"></i>&nbsp;ค้นหาวิชา
             </a>
           </div>
@@ -124,7 +125,7 @@
             <div class="column">
               <div class="field">
                 <label class="label">ชื่อข้อสอบ</label>
-                <div class="control">
+                <div :class="{'control': 1, 'is-loading': is_filter_waiting}">
                   <input ref="subject_name_search" v-model.trim="filter.name"
                     class="input"
                     type="text"
@@ -174,7 +175,15 @@
             class="hoverable has-text-centered px-2 py-3"
             style="font-size:1.1em"
             @click="fetchData">
-            <i class="mdi mdi-plus"></i>&nbsp;โหลดเพิ่มเติม
+            <span v-if="is_fetching_data">
+              &nbsp;
+              <span class="loader"
+                style="display:inline-block;height:1.1em;width:1.1em"></span>
+              &nbsp;
+            </span>
+            <span v-else>
+              <i class="mdi mdi-plus"></i>&nbsp;โหลดเพิ่มเติม
+            </span>
           </div>
           <div v-else-if="total_record !== 0" class="has-text-centered px-2 py-3">
             ไม่มีข้อสอบเพิ่มเติมแล้ว

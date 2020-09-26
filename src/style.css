@@ -70,3 +70,11 @@ input:focus::placeholder {
 .spacer {
   margin-top: 1.25rem !important;
 }
+
+.button.is-loading::after,
+.control.is-loading::after,
+.loader {
+  border-color: #363636 !important;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+}
