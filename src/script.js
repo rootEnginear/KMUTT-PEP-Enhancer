@@ -21,13 +21,13 @@ const vueapp = (original_data) => {
       );
       this.pep_call = new URLSearchParams(location.search).get("pep_call");
 
-      window.addEventListener(
-        "scroll",
-        _debounce(() => {
+      window.addEventListener("scroll", () => {
+        clearTimeout(this.show_goup_button_timeout);
+        this.show_goup_button_timeout = setTimeout(() => {
           this.show_goup_button =
             (document.documentElement.scrollTop || document.body.scrollTop) > 150;
-        }, 500)
-      );
+        }, 500);
+      });
     },
     data() {
       return {
@@ -56,6 +56,7 @@ const vueapp = (original_data) => {
           end_year: CURRENT_YEAR,
         },
         anchor_element: null,
+        show_goup_button_timeout: null,
         show_goup_button: false,
         is_searching_subject: false,
         is_filter_waiting: false,
