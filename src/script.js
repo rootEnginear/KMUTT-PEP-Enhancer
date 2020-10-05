@@ -103,7 +103,7 @@ const vueapp = (original_data) => {
           ({ s_year }) => s_year >= start_year && s_year <= end_year
         );
         if (!this.filter.show_missing) {
-          // Filter paper with name only
+          // Filter paper with link only
           filtered_subjects = filtered_subjects.filter(
             ({ s_link }) =>  s_link
           );
