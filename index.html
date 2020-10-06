@@ -124,6 +124,9 @@
             </div>
             <div class="column">
               <div class="field">
+                <label class="checkbox" style="float: right; ">
+                  <input v-model="filter.hide_missing" type="checkbox"> แสดงเฉพาะข้อสอบที่มีไฟล์
+                </label>
                 <label class="label">ชื่อข้อสอบ</label>
                 <div :class="{'control': 1, 'is-loading': is_filter_waiting}">
                   <input ref="subject_name_search" v-model.trim="filter.name"
