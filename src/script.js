@@ -36,7 +36,7 @@ const vueapp = (original_data) => {
         subject_search: "",
         current_cursor: 0,
         total_record: 1,
-        pep_call: 0,
+        pep_call: "",
         show_filter_box: false,
         filter_timeout: null,
         filter: {
@@ -47,6 +47,7 @@ const vueapp = (original_data) => {
           end_year: CURRENT_YEAR,
           min_year: 2503,
           max_year: CURRENT_YEAR,
+          hide_missing: false,
         },
         filter_linted: {
           name: null,
@@ -101,6 +102,12 @@ const vueapp = (original_data) => {
         filtered_subjects = filtered_subjects.filter(
           ({ s_year }) => s_year >= start_year && s_year <= end_year
         );
+        if (this.filter.hide_missing) {
+          // Filter paper with link only
+          filtered_subjects = filtered_subjects.filter(
+            ({ s_link }) =>  s_link
+          );
+        }
         return filtered_subjects;
       },
     },
@@ -252,6 +259,7 @@ const vueapp = (original_data) => {
           end_year: CURRENT_YEAR,
           min_year: 2503,
           max_year: CURRENT_YEAR,
+          hide_missing: false,
         };
       },
       goUp() {
