@@ -47,7 +47,7 @@ const vueapp = (original_data) => {
           end_year: CURRENT_YEAR,
           min_year: 2503,
           max_year: CURRENT_YEAR,
-          show_missing: true,
+          hide_missing: false,
         },
         filter_linted: {
           name: null,
@@ -102,7 +102,7 @@ const vueapp = (original_data) => {
         filtered_subjects = filtered_subjects.filter(
           ({ s_year }) => s_year >= start_year && s_year <= end_year
         );
-        if (!this.filter.show_missing) {
+        if (this.filter.hide_missing) {
           // Filter paper with link only
           filtered_subjects = filtered_subjects.filter(
             ({ s_link }) =>  s_link
