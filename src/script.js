@@ -259,7 +259,7 @@ const vueapp = (original_data) => {
           end_year: CURRENT_YEAR,
           min_year: 2503,
           max_year: CURRENT_YEAR,
-          show_missing: true,
+          hide_missing: false,
         };
       },
       goUp() {
