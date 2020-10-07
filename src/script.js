@@ -16,7 +16,7 @@ const vueapp = (original_data) => {
       this.anchor_element = document.createElement("a");
       this.anchor_element.target = "_blank";
 
-      [this.subjects, this.current_cursor, this.total_record] = this.phaser(
+      [this.subjects, this.current_cursor, this.total_record] = this.parser(
         original_data
       );
       this.pep_call = new URLSearchParams(location.search).get("pep_call");
@@ -75,14 +75,12 @@ const vueapp = (original_data) => {
           );
         }
         // Filter term
-        filtered_subjects = filtered_subjects.filter(
-          ({ s_term }) =>
-            s_term.some(a => term.includes(a))
+        filtered_subjects = filtered_subjects.filter(({ s_term }) =>
+          s_term.some((a) => term.includes(a))
         );
         // Filter type
-        filtered_subjects = filtered_subjects.filter(
-          ({ s_type }) =>
-            s_type.some(c => type.includes(c))
+        filtered_subjects = filtered_subjects.filter(({ s_type }) =>
+          s_type.some((c) => type.includes(c))
         );
         // Filter years
         filtered_subjects = filtered_subjects.filter(
@@ -123,7 +121,7 @@ const vueapp = (original_data) => {
       },
     },
     methods: {
-      phaser(doc) {
+      parser(doc) {
         const mergeEven = (a, c, i) => {
           if (i % 2 === 0) return [...a, [c]];
           let prev = a;
@@ -205,7 +203,7 @@ const vueapp = (original_data) => {
           .then((e) => e.text())
           .then((html_string) => {
             const html_dom = document.createRange().createContextualFragment(html_string);
-            [this.subjects, this.current_cursor, this.total_record] = this.phaser(
+            [this.subjects, this.current_cursor, this.total_record] = this.parser(
               html_dom
             );
           })
@@ -221,7 +219,7 @@ const vueapp = (original_data) => {
           .then((e) => e.text())
           .then((html_string) => {
             const html_dom = document.createRange().createContextualFragment(html_string);
-            const [subjects, current_cursor, total_record] = this.phaser(html_dom);
+            const [subjects, current_cursor, total_record] = this.parser(html_dom);
             this.subjects = this.subjects.concat(subjects);
             this.current_cursor = current_cursor;
             this.total_record = total_record;
