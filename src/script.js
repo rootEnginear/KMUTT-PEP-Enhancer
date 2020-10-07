@@ -75,29 +75,15 @@ const vueapp = (original_data) => {
           );
         }
         // Filter term
-        // Find which term is not in the array
-        const filter_out_term = [[1, 2], term].reduce((a, b) =>
-          a.filter((c) => !b.includes(c))
+        filtered_subjects = filtered_subjects.filter(
+          ({ s_term }) =>
+            s_term.some(a => term.includes(a))
         );
-        if (filter_out_term.length) {
-          filtered_subjects = filtered_subjects.filter(
-            ({ s_term }) =>
-              [s_term, filter_out_term].reduce((a, b) => a.filter((c) => !b.includes(c)))
-                .length
-          );
-        }
         // Filter type
-        // Find which type is not in the array
-        const filter_out_type = [["Mid-Term", "Final"], type].reduce((a, b) =>
-          a.filter((c) => !b.includes(c))
+        filtered_subjects = filtered_subjects.filter(
+          ({ s_type }) =>
+            s_type.some(c => type.includes(c))
         );
-        if (filter_out_type.length) {
-          filtered_subjects = filtered_subjects.filter(
-            ({ s_type }) =>
-              [s_type, filter_out_type].reduce((a, b) => a.filter((c) => !b.includes(c)))
-                .length
-          );
-        }
         // Filter years
         filtered_subjects = filtered_subjects.filter(
           ({ s_year }) => s_year >= start_year && s_year <= end_year
