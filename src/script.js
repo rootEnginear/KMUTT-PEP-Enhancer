@@ -77,12 +77,12 @@ const vueapp = (original_data) => {
         // Filter term
         filtered_subjects = filtered_subjects.filter(
           ({ s_term }) =>
-            s_term.filter(a => term.includes(a)).length
+            s_term.some(a => term.includes(a))
         );
         // Filter type
         filtered_subjects = filtered_subjects.filter(
           ({ s_type }) =>
-            s_type.filter(c => type.includes(c)).length
+            s_type.some(c => type.includes(c))
         );
         // Filter years
         filtered_subjects = filtered_subjects.filter(
