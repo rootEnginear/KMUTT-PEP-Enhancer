@@ -16,7 +16,7 @@ const vueapp = (original_data) => {
       this.anchor_element = document.createElement("a");
       this.anchor_element.target = "_blank";
 
-      [this.subjects, this.current_cursor, this.total_record] = this.phaser(
+      [this.subjects, this.current_cursor, this.total_record] = this.parser(
         original_data
       );
       this.pep_call = new URLSearchParams(location.search).get("pep_call");
@@ -75,38 +75,20 @@ const vueapp = (original_data) => {
           );
         }
         // Filter term
-        // Find which term is not in the array
-        const filter_out_term = [[1, 2], term].reduce((a, b) =>
-          a.filter((c) => !b.includes(c))
+        filtered_subjects = filtered_subjects.filter(({ s_term }) =>
+          s_term.some((a) => term.includes(a))
         );
-        if (filter_out_term.length) {
-          filtered_subjects = filtered_subjects.filter(
-            ({ s_term }) =>
-              [s_term, filter_out_term].reduce((a, b) => a.filter((c) => !b.includes(c)))
-                .length
-          );
-        }
         // Filter type
-        // Find which type is not in the array
-        const filter_out_type = [["Mid-Term", "Final"], type].reduce((a, b) =>
-          a.filter((c) => !b.includes(c))
+        filtered_subjects = filtered_subjects.filter(({ s_type }) =>
+          s_type.some((c) => type.includes(c))
         );
-        if (filter_out_type.length) {
-          filtered_subjects = filtered_subjects.filter(
-            ({ s_type }) =>
-              [s_type, filter_out_type].reduce((a, b) => a.filter((c) => !b.includes(c)))
-                .length
-          );
-        }
         // Filter years
         filtered_subjects = filtered_subjects.filter(
           ({ s_year }) => s_year >= start_year && s_year <= end_year
         );
+        // Filter paper with link only
         if (this.filter.hide_missing) {
-          // Filter paper with link only
-          filtered_subjects = filtered_subjects.filter(
-            ({ s_link }) =>  s_link
-          );
+          filtered_subjects = filtered_subjects.filter(({ s_link }) => s_link);
         }
         return filtered_subjects;
       },
@@ -139,7 +121,7 @@ const vueapp = (original_data) => {
       },
     },
     methods: {
-      phaser(doc) {
+      parser(doc) {
         const mergeEven = (a, c, i) => {
           if (i % 2 === 0) return [...a, [c]];
           let prev = a;
@@ -221,7 +203,7 @@ const vueapp = (original_data) => {
           .then((e) => e.text())
           .then((html_string) => {
             const html_dom = document.createRange().createContextualFragment(html_string);
-            [this.subjects, this.current_cursor, this.total_record] = this.phaser(
+            [this.subjects, this.current_cursor, this.total_record] = this.parser(
               html_dom
             );
           })
@@ -237,7 +219,7 @@ const vueapp = (original_data) => {
           .then((e) => e.text())
           .then((html_string) => {
             const html_dom = document.createRange().createContextualFragment(html_string);
-            const [subjects, current_cursor, total_record] = this.phaser(html_dom);
+            const [subjects, current_cursor, total_record] = this.parser(html_dom);
             this.subjects = this.subjects.concat(subjects);
             this.current_cursor = current_cursor;
             this.total_record = total_record;
