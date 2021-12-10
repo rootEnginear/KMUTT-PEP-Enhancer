@@ -255,7 +255,7 @@ const vueapp = (original_data) => {
 };
 
 (function () {
-  fetch(chrome.extension.getURL("/index.html"))
+  fetch(chrome.runtime.getURL("/index.html"))
     .then((r) => r.text())
     .then((html) => {
       // Save old Document

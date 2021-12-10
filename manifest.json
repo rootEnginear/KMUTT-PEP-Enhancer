@@ -1,5 +1,5 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "KMUTT PEP Enhancer",
 	"version": "1.1.0.6",
 	"description": "KMUTT Past Exam Paper Enhancer for better paper browsing experience.",
@@ -20,5 +20,10 @@
 			"css": ["./src/style.min.css"]
 		}
 	],
-	"web_accessible_resources": ["index.html"]
+	"web_accessible_resources": [
+		{
+			"resources": ["index.html"],
+			"matches": ["https://modps5.lib.kmutt.ac.th/*", "https://libmod5.lib.kmutt.ac.th/*"]
+		}
+	]
 }
