@@ -1,24 +1,24 @@
 {
-  "manifest_version": 2,
-  "name": "KMUTT PEP Enhancer",
-  "version": "1.1.0.6",
-  "description": "KMUTT Past Exam Paper Enhancer for better paper browsing experience.",
-  "icons": {
-    "16": "icons/16.png",
-    "32": "icons/32.png",
-    "48": "icons/48.png",
-    "64": "icons/64.png",
-    "128": "icons/128.png"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*",
-        "https://libmod5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*"
-      ],
-      "js": ["./js/vue.js", "./js/buefy.table.js", "./src/script.min.js"],
-      "css": ["./src/style.min.css"]
-    }
-  ],
-  "web_accessible_resources": ["index.html"]
+	"manifest_version": 2,
+	"name": "KMUTT PEP Enhancer",
+	"version": "1.1.0.6",
+	"description": "KMUTT Past Exam Paper Enhancer for better paper browsing experience.",
+	"icons": {
+		"16": "icons/16.png",
+		"32": "icons/32.png",
+		"48": "icons/48.png",
+		"64": "icons/64.png",
+		"128": "icons/128.png"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://modps5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*",
+				"https://libmod5.lib.kmutt.ac.th/services/research/specialdbs/pep.jsp*"
+			],
+			"js": ["./js/vue.js", "./js/buefy.table.js", "./src/script.min.js"],
+			"css": ["./src/style.min.css"]
+		}
+	],
+	"web_accessible_resources": ["index.html"]
 }
