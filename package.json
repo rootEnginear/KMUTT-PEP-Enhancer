@@ -29,6 +29,6 @@
     "es-check": "^6.1.1",
     "postcss": "^8.4.4",
     "postcss-cli": "^9.0.2",
-    "terser": "^5.10.0"
+    "terser": "^5.14.2"
   }
 }
